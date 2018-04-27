@@ -4,17 +4,18 @@ e=0.1;
 // Horn dimensions (distance from center)
 x_r=8;
 y_r=14;
+shaft_z=20;
 
 // parameters
+blind_shaft_w=3;
+blind_shaft_d=4.5;
+blind_shaft_h=16;
+
 cyl_r=5;
-cyl_h=20;
+cyl_h=blind_shaft_h+8;
 
 cyl_open_cent_r=2.5;
 cyl_open_cent_h=2;
-
-blind_shaft_w=3;
-blind_shaft_d=4.5;
-blind_shaft_h=12;
 
 mount_w=x_r-2;
 mount_d=y_r;
@@ -24,12 +25,28 @@ support_h=5;
 support_d=7;
 support_w=mount_w-1;
 
+tap_hole_dist=13;
+tap_hole_r=1;
+
 ////////////////////////////////////////////
 
 main_body();
-mount_tab(cyl_r-2);
-rotate([0,0,180])
+
+difference() {
     mount_tab(cyl_r-2);
+    
+    translate([0,tap_hole_dist+tap_hole_r/2,mount_h/2])
+        cylinder(h=mount_h,r=tap_hole_r,center=true);
+}
+
+rotate([0,0,180])   
+difference() {
+    mount_tab(cyl_r-2);
+    
+    translate([0,tap_hole_dist+tap_hole_r/2,mount_h/2])
+        cylinder(h=mount_h,r=tap_hole_r,center=true);
+}
+
 
 translate([-support_w/2,cyl_r-2,mount_h])
     support(support_w, support_d, support_h);
