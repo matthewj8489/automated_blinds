@@ -29,13 +29,18 @@ tap_hole_dist=13;
 tap_hole_r=1;
 
 ////////////////////////////////////////////
-
+//difference(){
+    
 main_body();
+
+//translate([0, 0, 15])
+//        cube([10, 10, 25], center=true);
+//}
 
 difference() {
     mount_tab(cyl_r-2);
-    
-    translate([0,tap_hole_dist+tap_hole_r/2,mount_h/2])
+
+    translate([0,tap_hole_dist,mount_h/2])
         cylinder(h=mount_h,r=tap_hole_r,center=true);
 }
 
@@ -43,7 +48,7 @@ rotate([0,0,180])
 difference() {
     mount_tab(cyl_r-2);
     
-    translate([0,tap_hole_dist+tap_hole_r/2,mount_h/2])
+    translate([0,tap_hole_dist,mount_h/2])
         cylinder(h=mount_h,r=tap_hole_r,center=true);
 }
 
